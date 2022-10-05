@@ -1,0 +1,1 @@
+library devo_quotes_package;
