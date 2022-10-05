@@ -1,0 +1,99 @@
+Board :: scanForPawnPromotion(scanWhite)
+    IF scanWhite
+        start <- 56
+        stop <- 63
+    ELSE
+        start <- 0
+        stop <- 7
+
+    FOR position <- start...stop
+        IF board.getPiece(position) = 'p' and board.getPiece(position).isWhite() = scanWhite
+            q <- Queen(scanWhite)
+            board.setPiece(Q, position)
+            RETURN 
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+King :: canCastle(board)
+
+    // Set the correct positions to check based on King color
+    IF isBlack
+        // Black King
+        correctKingPosition <- 60
+        correctRookPosition <- 63
+        rookShouldBeWhite <- FALSE
+    ELSE 
+        // White King
+        correctKingPosition <- 4
+        correctRookPosition <- 7
+        rookShouldBeWhite <- TRUE
+
+    // First check if the King is in the correct position and has not moved
+	IF getPosition() = correctKingPosition AND moveCount = 0
+
+        // Next check that the next two positions are spaces
+        nextSquare <- board.getPiece(correctKingPosition + 1)
+        twoSquaresOver <- board.getPiece(correctKingPosition + 2)
+		IF nextSquare.getPieceType() = ‘s‘ AND twoSquaresOver.getPieceType() = ‘s‘
+
+            // Lastly check that the rook is in the correct position and has not moved
+            piece <- board.getPiece(correctRookPosition)
+            IF piece.getPieceType() = 'r' AND piece.getMoveCount() = 0 AND piece.isWhite() = rookShouldBeWhite
+
+                // return true to the client; the king can castle. 
+                // In this case the only client is King :: getPossbileMoves()
+                // and having recieved the return value true, getPossibleMoves()
+                // will add the castle move to the set of possible moves for the King. 
+                RETURN TRUE
+                    
+            ELSE 
+                RETURN FALSE
+        ELSE 
+            RETURN FALSE
+	ELSE
+		RETURN FALSE
