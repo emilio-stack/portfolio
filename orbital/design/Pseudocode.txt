@@ -1,0 +1,89 @@
+Satellite :: update()
+    
+    // Get gravity at the satellite's current position
+    gravity <- Gravity(this.position)
+
+    // Update the satellite's angle
+    this.angle <- Angle(this.position)
+
+    // Get the accleration of the satellite
+    accel <- Acceleration(this.angle, gravity)
+
+    // Update the velocity
+    this.velocity.applyAcceleration(accel)
+
+    // Update the position
+    this.position <- Position(position, newVelocity, accel)
+
+
+Simulator :: checkCollisions()
+
+    // Create the array of Position objects
+    arrayOfPositions <- []
+
+    // Check if anything has collided
+    FOR i <- 0...satellites.length
+        FOR j <- 0...arrayOfPositions.length
+            IF satellites[i].getPosition() != arrayOfPositions[j]
+                // Add the position
+                arrayOfPositions.push(satellites[i].getPosition())
+            ELSE
+                // Handle the checkCollision 
+                explosion1 <- satellites[i].explode()
+                explosion2 <- satellites[j].explode()
+
+                // create parts
+                FOR p <- 0...explosion1.getNumParts()
+                    satellites.push(Part(satellites[i].getPosition(), satellites[i].getVelocity(), satellites[i].getAngle()))                
+                FOR p <- 0...explosion2.getNumParts()
+                    satellites.push(Part(satellites[i].getPosition(), satellites[i].getVelocity(), satellites[i].getAngle()))                
+
+                // create fragments
+                FOR p <- 0...explosion1.getNumFragments()
+                    satellites.push(Fragment(satellites[i].getPosition(), satellites[i].getVelocity(), satellites[i].getAngle()))                
+                FOR p <- 0...explosion2.getNumFragments()
+                    satellites.push(Fragment(satellites[i].getPosition(), satellites[i].getVelocity(), satellites[i].getAngle()))                
+
+                // delete satellite
+                DEL satellites[i]
+                DEL satellites[j]
+
+Simulator :: checkCollisions()
+	
+	// Use a map for the hash and key value ability
+	mapOfPositions <- []
+
+	// Check if anything has collided.
+	FOR i <- 0...satellites.length
+
+        // store as {Position: index}
+        it <- mapOfPositions.emplace(satellites[i].getPosition(), i)
+
+        // If key (position) is already present
+        IF (it.second = FALSE)
+
+            // handle collision
+            explosion1 <- satellites[it.first.second]       // this will get satellite at the index corresponding to that key
+            explosion2 <- satellites[i]
+            
+            // create parts
+            FOR p <- 0...explosion1.getNumParts()
+                satellites.push(Part(satellites[i].getPosition(), satellites[i].getVelocity(), satellites[i].getAngle()))                
+            FOR p <- 0...explosion2.getNumParts()
+                satellites.push(Part(satellites[i].getPosition(), satellites[i].getVelocity(), satellites[i].getAngle()))   
+
+            // create fragments
+            FOR p <- 0...explosion1.getNumFragments()
+                satellites.push(Fragment(satellites[i].getPosition(), satellites[i].getVelocity(), satellites[i].getAngle()))                
+            FOR p <- 0...explosion2.getNumFragments()
+                satellites.push(Fragment(satellites[i].getPosition(), satellites[i].getVelocity(), satellites[i].getAngle()))  
+
+            // delete satellite
+            DEL satellites[it.first.second]
+            DEL satellites[i]
+
+
+
+
+    
+
