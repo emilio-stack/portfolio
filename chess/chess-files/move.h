@@ -2,8 +2,7 @@
  * Header File:
  *    Move : The move class
  * Author:
- *    Emilio Regino, Bradley Payne, Penelope Sanchez,
- *    Brother Helfrich
+ *    Emilio Regino, Penelope Sanchez
  * Summary:
  *    A class to handle all moves in the game
  ************************************************************************/
