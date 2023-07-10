@@ -2,8 +2,7 @@
  * Source File:
  *    Board: A board of chess pieces
  * Author:
- *    Emilio Regino, Bradley Payne, Penelope Sanchez,
- *    Brother Helfrich
+ *    Emilio Regino, Penelope Sanchez
  * Summary:
  *    The Board class provides the client all the functionality to
  *    play a game of chess. It is a collection of pieces and a
