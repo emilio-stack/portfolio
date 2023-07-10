@@ -2,8 +2,7 @@
  * Header File:
  *    Piece: The piece class
  * Author:
- *    Emilio Regino, Bradley Payne, Penelope Sanchez, Brother
- *    Helfrich
+ *    Emilio Regino, Penelope Sanchez
  * Summary:
  *    A class to represent the a piece in the game of chess.
  *    PAWN, KNIGHT, ROOK, BISHOP, KING, QUEEN, SPACE
