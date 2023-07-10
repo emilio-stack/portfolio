@@ -2,8 +2,7 @@
  * Source File:
  *    move.cpp
  * Author:
- *    Emilio Regino, Bradley Payne, Penelope Sanchez,
- *    Brother Helfrich
+ *    Emilio Regino, Penelope Sanchez
  * Summary:
  *    A class to handle functions for move class
  ************************************************************************/
